@@ -1,4 +1,4 @@
-# Creates pseudo distributed hadoop 2.6.0 in ubuntu
+# Creates pseudo distributed hadoop 2.7.0 in ubuntu
 # This dockerfile is adapted from seqeunceiq/hadoop-docker files
 
 FROM ubuntu:trusty
@@ -55,7 +55,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # hadoop binary download
-ENV HADOOP_VERSION 2.6.0
+ENV HADOOP_VERSION 2.7.0
 RUN curl -s http://www.us.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-${HADOOP_VERSION} hadoop
 
