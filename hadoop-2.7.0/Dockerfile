@@ -68,7 +68,9 @@ ENV HADOOP_YARN_HOME /usr/local/hadoop
 ENV HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/lib/jvm/java-7-oracle\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 RUN sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
-ENV HADOOP_CLASSPATH $HADOOP_COMMON_HOME:/usr/local/hadoop/share/hadoop/tools/lib/*
+
+# Add AWS jar file
+RUN sed -i '46i export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/usr/local/hadoop/share/hadoop/tools/lib/*' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 
 # copy hadoop site xml files
 RUN mkdir $HADOOP_PREFIX/input
